@@ -1,14 +1,11 @@
 package com.yamirkuro.maneger;
 
-import com.palmergames.bukkit.towny.TownyAPI;
 import com.palmergames.bukkit.towny.event.*;
-import com.palmergames.bukkit.towny.event.nation.NationRankRemoveEvent;
-import com.palmergames.bukkit.towny.event.nation.NationRankAddEvent;
 import com.palmergames.bukkit.towny.event.nation.NationKingChangeEvent;
-//import com.palmergames.bukkit.towny.event.nation.;
+import com.palmergames.bukkit.towny.event.nation.NationRankAddEvent;
+import com.palmergames.bukkit.towny.event.nation.NationRankRemoveEvent;
 import com.palmergames.bukkit.towny.object.Nation;
 import com.palmergames.bukkit.towny.object.Resident;
-import com.palmergames.bukkit.towny.object.Town;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.node.types.InheritanceNode;
 import org.bukkit.Bukkit;
@@ -19,7 +16,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 
 public class Manager extends JavaPlugin implements Listener {
 
@@ -64,6 +64,7 @@ public class Manager extends JavaPlugin implements Listener {
             if (mayor != null) {
                 Player player = Bukkit.getPlayerExact(mayor.getName());
                 if (player != null) {
+                    // поаідомлення грацю. можна повидаляти. зроблено для дебагу
                     player.sendMessage("§a[TRS] Ви стали мером міста " + event.getTown().getName());
                     handleRankChange(player.getName(), "mayor_group", true);
                 }
@@ -71,10 +72,14 @@ public class Manager extends JavaPlugin implements Listener {
         }, 1L); // затримка в 1 тік, щоб Towny встиг завершити створення міста
 
     }
+
+    //коли в товныі гравцю додається ранг
     @EventHandler
     public void onAddRank(TownAddResidentRankEvent event) {
         handleRankChange(event.getResident().getName(), event.getRank().toLowerCase(), true);
     }
+
+    //коли нація створюється
     @EventHandler
     public void onNationCreate(NewNationEvent event) {
         Nation nation = event.getNation();
@@ -90,10 +95,14 @@ public class Manager extends JavaPlugin implements Listener {
         }, 1L); //
 
     }
+
+    //коли з товні міста гравцю видаляєтсья ранг
     @EventHandler
     public void onRemoveRank(TownRemoveResidentRankEvent event) {
         handleRankChange(event.getResident().getName(), event.getRank().toLowerCase(), false);
     }
+
+    //коли вибирається новий мер ХЗ чи працює)
     @EventHandler
     public void onNationKingChange(NationKingChangeEvent event) {
         Resident newKing = event.getNewKing();
@@ -106,7 +115,7 @@ public class Manager extends JavaPlugin implements Listener {
         }
     }
 
-
+    //нема смисла описувати кожен ранг і так ясно)
     @EventHandler
     public void onNationAddRank(NationRankAddEvent event) {
         handleRankChange(event.getResident().getName(), "nation_" + event.getRank().toLowerCase(), true);
@@ -131,6 +140,7 @@ public class Manager extends JavaPlugin implements Listener {
         }
     }
 
+    // логіка роботи видачі самих рангів
     private void handleRankChange(String playerName, String rankName, boolean add) {
         OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
         UUID uuid = offlinePlayer.getUniqueId();
