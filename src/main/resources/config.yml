@@ -1,0 +1,31 @@
+ranks:
+  assistant:
+    group: town_assistant
+    priority: 2
+  helper:
+    group: town_helper
+    priority: 1
+  donator:
+    group: town_donator
+    priority: 1
+  vip:
+    group: town_vip
+    priority: 1
+  sheriff:
+    group: town_sheriff
+    priority: 3
+  mayor_group:
+    group: mayor_group
+    priority: 3
+
+  nation_assistant:
+    group: nation_assistant
+    priority: 2
+  nation_king:
+    group: nation_king
+    priority: 2
+  nation_helper:
+    group: nation_helper
+    priority: 1
+
+join_group: town_member

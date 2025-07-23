@@ -1,0 +1,17 @@
+name: Maneger
+version: '1.0-SNAPSHOT'
+main: com.yamirkuro.maneger.Manager
+api-version: '1.20'
+authors: [ Yamirkuro ]
+depend: [Towny, LuckPerms]
+
+commands:
+  manager:
+    description: Reload plugin configuration
+    usage: /menegerpls reload
+    permission: trs.reload
+
+permissions:
+  trs.reload:
+    description: Дозволяє перезавантаження конфігурації плагіну
+    default: op

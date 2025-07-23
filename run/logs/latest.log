@@ -1,0 +1,19 @@
+[16:58:59] [ServerMain/ERROR]: Failed to load properties from file: server.properties
+java.nio.file.NoSuchFileException: server.properties
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:234) ~[?:?]
+	at java.nio.file.Files.newByteChannel(Files.java:379) ~[?:?]
+	at java.nio.file.Files.newByteChannel(Files.java:431) ~[?:?]
+	at java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:420) ~[?:?]
+	at java.nio.file.Files.newInputStream(Files.java:159) ~[?:?]
+	at net.minecraft.server.dedicated.Settings.loadFromFile(Settings.java:57) ~[?:?]
+	at net.minecraft.server.dedicated.DedicatedServerProperties.fromFile(DedicatedServerProperties.java:178) ~[paper-1.20.jar:git-Paper-17]
+	at net.minecraft.server.dedicated.DedicatedServerSettings.<init>(DedicatedServerSettings.java:19) ~[paper-1.20.jar:git-Paper-17]
+	at net.minecraft.server.Main.main(Main.java:131) ~[paper-1.20.jar:git-Paper-17]
+	at org.bukkit.craftbukkit.Main.main(Main.java:316) ~[paper-1.20.jar:git-Paper-17]
+	at io.papermc.paperclip.Paperclip.lambda$main$0(Paperclip.java:42) ~[app:?]
+	at java.lang.Thread.run(Thread.java:1570) ~[?:?]
+[16:58:59] [ServerMain/WARN]: Failed to load eula.txt
+[16:58:59] [ServerMain/INFO]: You need to agree to the EULA in order to run the server. Go to eula.txt for more info.
